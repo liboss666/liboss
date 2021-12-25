@@ -1,0 +1,30 @@
+git 常用指令：
+	1，才开始需要先进入你在本地所创建的相应文件夹中，之后再执行git init初始化指令。
+
+	2，git add 文件名 =》将文件添加到git的缓存区，就相当于将要添加的文件列举到清单上的操作。
+
+	3，git commit -m "备注提交到本地仓库的信息"  将文件提交到开始时初始化的时候生成的.git（版本库或者本地仓库）文件夹中。
+
+	4，git log 可以查看执行完commit指令后的相关操作信息。
+
+	5，git status 可以查看执行完add指令后相关的操作信息。
+
+	6，git log --pretty=oneline 可以美化git log执行后出来的很多行的操作信息，压缩为就几行信息显示。
+
+	7，git reset --hard HEAD  (这是因为cmd控制台中换行符默认是^，而不是\ ，所以它的more？的意思是问你下一行是否需要再输入，而^ 符号就被当做换行符而被git命令忽略掉了。
+
+解决方法有如下几种：
+加引号：git reset --hard "HEAD^"
+加一个^：git reset --hard HEAD^^
+换成~：git reset --hard HEAD~ 或者 git reset --hard HEAD~1
+~ 后面的数字表示回退几次提交，默认是一次)
+
+	8,git reflog查看历史指令，就是在当你将文件的版本修改到最初始的状态后，终端关闭了，或者电脑关机了，此时再想要重新恢复到某次修改的版本的话，那么就需要使用此命令，查看到相应的哈希值后，再运用git reset --hard 哈希值  这样就又可以再次回到想要的版本
+
+	9，git checkout -- 文件名  git restore  文件名  这两个指令都可以将还未进行add操作的文件恢复到修改前的状态。
+
+	10，进行了add指令之后，那就需要先使用git reset HEAD filename  之后再使用git checkout filename 这样就可以将其恢复到修改前的状态。但是倘若你不仅操作了add指令，而且还执行了commit指令的话，那么再使用这两个之类的话，就没有作用了。
+
+	11，删除指令：git rm filename  这个删除指令如果想要成功使用的话，必须是要在使用过add和commit指令之后的，不然是无法使用的。如果是误删了，那么就需要恢复之前的文件。首先git reset HEAD filename  其次 git checkout filename 这样就可以恢复误删除的文件了。
+
+	12，在终端上创建密钥：ssh-keygen -t rsa -C “对应GitHub上的邮箱”
